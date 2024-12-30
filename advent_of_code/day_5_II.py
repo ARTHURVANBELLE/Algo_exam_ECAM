@@ -29,12 +29,12 @@ def update(couples, updates):
     def invalid_update(update):
         for i in range(len(update)):
             end = update[i+1:]
-            if update[i] in couples.keys():                             
+            if update[i] in couples.keys():
                 if len(set(couples[update[i]]) & set(end)) > 0:  #if the intersection of the two lists is not empty (start element in end list of the update)
-                    return update       
+                    return update
         return []
     
-    def validate_update(update): 
+    def validate_update(update):
         # Simple cases
         if len(update) < 2:
             return update
