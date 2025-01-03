@@ -28,7 +28,16 @@ def google_page_rank(edges: pd.DataFrame, names: pd.DataFrame, iterations=100, s
     
     # Create transition matrix directly
     T = csr_matrix((weights, (from_nodes, to_nodes)), shape=(num_nodes, num_nodes))
-    
+    """    
+    for _, edge in edges.iterrows():
+        originNode = edge.iloc[0] - 1 # Gets the origin node of the edge (column FromNode)
+        targetNode = edge.iloc[1] - 1 # Gets the target node of the edge (column ToNode)
+
+        if edge_counts[originNode] != 0:
+            transition_matrix[originNode, targetNode] = 1 / edge_counts[originNode]
+
+    transition_matrix = transition_matrix.tocsc()  # Convert to csc_matrix for efficiency
+    """    
     # Power iteration
     p = np.ones(num_nodes) / num_nodes
     for i in range(iterations):
